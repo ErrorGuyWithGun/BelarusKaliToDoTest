@@ -1,12 +1,28 @@
 {
-    "posts": [
-      { "id": 1, "title": "Покушать", "body": "Еду" },
-      { "id": 2, "title": "Спать", "body": "Ночью" },
-      { "id": 3, "title": "Купить", "body": "Хлеб" }
-    ],
- 
-    "profile": { "login": "admin", "password":"1234" }
-
+  "posts": [
+    {
+      "id": 1,
+      "title": "Покушать",
+      "body": "Еду"
+    },
+    {
+      "id": 2,
+      "title": "Спать",
+      "body": "Ночью"
+    },
+    {
+      "id": 3,
+      "title": "Купить",
+      "body": "Хлеб"
+    },
+    {
+      "id": "832d",
+      "title": "Взять",
+      "body": "Еду"
+    }
+  ],
+  "profile": {
+    "login": "admin",
+    "password": "1234"
+  }
 }
-
- 

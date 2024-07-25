@@ -17,6 +17,7 @@
           </ion-card-content>
         </ion-card>
       </div>
+
     </ion-content>
   </ion-page>
 </template>
@@ -63,13 +64,9 @@ function searchPosts() {
     return;
   }
 
-  searchResults.value = posts.value.filter(
-    (post) =>
-      post.title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
-      post.body.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
-      (post.comments && post.comments.some((comment) =>
-        comment.body.toLowerCase().includes(searchTerm.value.toLowerCase())
-      ))
+  searchResults.value = posts.value.filter((post) =>
+    post.title.toLowerCase().includes(searchTerm.value.toLowerCase())
   );
 }
+
 </script>
