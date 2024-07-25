@@ -1,80 +1,75 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Search</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true" class="ion-text-center">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Search</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div class="ion-padding">
-        <ion-item>
-          <ion-input
-            type="text"
-            placeholder="Search"
-            :value="props.InputValue"
-            @input="handleInputChange"
-            @keyup.enter="handleSearch"
-          ></ion-input>
-        </ion-item>
-      </div>
-      <div class="ion-padding">
-        <ion-list>
-          <ion-item v-for="item in filteredItems" :key="item.id">
-            {{ item.value }}
-          </ion-item>
-        </ion-list>
+    <ion-content class="ion-padding">
+      <ion-searchbar
+        v-model="searchTerm"
+        placeholder="Search"
+        @keyup.enter="searchPosts"
+      ></ion-searchbar>
+      <ion-button @click="searchPosts">Search</ion-button>
+      <div v-if="searchResults.length > 0">
+        <ion-card v-for="post in searchResults" :key="post.id">
+          <ion-card-header>
+            <ion-card-title>{{ post.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ post.body }}</p>
+          </ion-card-content>
+        </ion-card>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonList } from '@ionic/vue';
-import { computed, PropType, defineEmits } from 'vue';
+import { ref, onMounted } from 'vue';
+import { IonPage, IonContent, IonSearchbar, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
 
-
-
-interface Item {
-  id: string;
-  value: string;
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+  comments: Comment[];
 }
 
-const props = defineProps({
-  items: {
-    type: Array as PropType<Item[]>,
-    required: true
-  },
-  InputValue: {
-    type: String,
-    required: true
-  }
+interface Comment {
+  id: number;
+  postId: number;
+  body: string;
+}
+
+const posts = ref<Post[]>([]);
+const searchTerm = ref('');
+const searchResults = ref<Post[]>([]);
+
+onMounted(async () => {
+  await fetchPostsAndComments();
 });
 
-const emits = defineEmits<{
-  (event: 'update:InputValue', value: string): void;
-}>();
+async function fetchPostsAndComments() {
+  const postResponse = await fetch("http://localhost:3000/posts");
+  posts.value = await postResponse.json();
 
-const filteredItems = computed(() => {
-  if (!props.items) {
-    return [];
+  // Fetch comments separately for each post
+  for (const post of posts.value) {
+    const commentResponse = await fetch(`http://localhost:3000/posts`);
+    post.comments = await commentResponse.json();
   }
-  return props.items.filter((item) =>
-    item.value.toLowerCase().includes(props.InputValue.toLowerCase())
+}
+
+function searchPosts() {
+  if (searchTerm.value.trim() === '') {
+    searchResults.value = [];
+    return;
+  }
+
+  searchResults.value = posts.value.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+      post.body.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+      (post.comments && post.comments.some((comment) =>
+        comment.body.toLowerCase().includes(searchTerm.value.toLowerCase())
+      ))
   );
-});
-
-const handleSearch = () => {
-  // Add any additional logic you want to execute when the user presses Enter
-  console.log('Search executed:', props.InputValue);
-};
-
-const handleInputChange = (event: Event) => {
-  emits('update:InputValue', (event.target as HTMLInputElement).value);
-};
+}
 </script>
