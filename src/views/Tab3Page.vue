@@ -11,7 +11,7 @@
           <ion-title size="large">Tab 3</ion-title>
         </ion-toolbar>
       </ion-header>
-      <InputToDo v-model:inputValue="inputValue"/>
+      <InputToDo />
     </ion-content>
   </ion-page>
 </template>
@@ -19,6 +19,5 @@
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import InputToDo from '@/components/InputToDo.vue';
-import { ref } from 'vue';
-const inputValue=ref('');
+
 </script>

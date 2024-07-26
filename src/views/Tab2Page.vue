@@ -26,6 +26,9 @@
 import { ref, onMounted } from 'vue';
 import { IonPage, IonContent, IonSearchbar, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
 
+
+
+
 interface Post {
   id: number;
   title: string;
@@ -51,7 +54,7 @@ async function fetchPostsAndComments() {
   const postResponse = await fetch("http://localhost:3000/posts");
   posts.value = await postResponse.json();
 
-  // Fetch comments separately for each post
+
   for (const post of posts.value) {
     const commentResponse = await fetch(`http://localhost:3000/posts`);
     post.comments = await commentResponse.json();

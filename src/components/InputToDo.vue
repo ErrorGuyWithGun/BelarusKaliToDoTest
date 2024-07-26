@@ -1,39 +1,41 @@
 <template>
-  <div id="container">
+  <div id="container" class="mx-5">
     <div class="todo-list" v-if="todos.length > 0">
-      <div v-for="(todo, index) in todos" :key="index" class="todo-item">
-        <div v-if="isEditing(index)" class="todo-item-edit">
-          <ion-input v-model="editingTodo.name" @keyup.enter="updateTodo(index)"></ion-input>
-          <ion-input v-model="editingTodo.description" placeholder="Description"></ion-input>
-          <div class="button-container">
-            <ion-button @click="updateTodo(index)" color="success">Save</ion-button>
-            <ion-button @click="cancelEdit" color="danger">Cancel</ion-button>
+      <div v-for="(todo, index) in todos" :key="index" class="mt-4 flex justify-between items-center">
+        <div v-if="isEditing(index)" class="flex items-center w-full justify-between">
+          <ion-input v-model="editingTodo.name" @keyup.enter="updateTodo(index)" class="flex-1"></ion-input>
+          <ion-input v-model="editingTodo.description" placeholder="Description" class="ml-4 flex-1"></ion-input>
+          <div class="button-container flex">
+            <ion-button @click="updateTodo(index)" color="success" class="ml-4">Save</ion-button>
+            <ion-button @click="cancelEdit" color="danger" class="ml-4">Cancel</ion-button>
           </div>
         </div>
-        <div v-else class="todo-item-view">
-          <div class="description-container">
+        <div v-else class="flex items-center w-full justify-between">
+          <div class="description-container flex flex-col items-start">
             <span>{{ todo.name }}</span>
-            <div class="description">{{ todo.description }}</div>
+            <div class="description text-gray-600 mt-2 ml-4">{{ todo.description }}</div>
           </div>
-          <div class="button-container">
-            <ion-button @click="startEdit(index)" color="primary">Edit</ion-button>
-            <ion-button @click="removeTodo(index)" color="danger">Delete</ion-button>
+          <div class="button-container flex">
+            <ion-button @click="startEdit(index)" color="primary" class="ml-4">Edit</ion-button>
+            <ion-button @click="removeTodo(index)" color="danger" class="ml-4">Delete</ion-button>
           </div>
         </div>
       </div>
     </div>
-    <div class="todo-input">
+    <div class="todo-input flex justify-center items-center mt-8">
       <ion-input
         v-model="newTodo.name"
         placeholder="Name new list"
         @keyup.enter="addTodo"
+        class="flex-1 mr-4 ml-4"
       ></ion-input>
       <ion-input
         v-model="newTodo.description"
         placeholder="Description"
         @keyup.enter="addTodo"
+        class="flex-1 mr-4 ml-4"
       ></ion-input>
-      <ion-button @click="addTodo">Save</ion-button>
+      <ion-button @click="addTodo" class="ml-4">Save</ion-button>
     </div>
   </div>
 </template>
@@ -135,70 +137,3 @@ const cancelEdit = () => {
 
 const isEditing = (index: number) => index === editingIndex.value;
 </script>
-
-
-  
-  <style scoped>
-  #container {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  
-  .todo-item {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .todo-item-edit,
-  .todo-item-view {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: flex-end;
-    flex-shrink: 0;
-  }
-  
-  .button-container ion-button {
-    margin-left: 10px;
-  }
-  
-  .todo-input {
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .todo-input ion-button {
-    margin-left: 10px;
-  }
-  
-  .todo-input ion-input {
-    flex-grow: 1;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-  
-  .todo-input ion-input:focus {
-    flex-grow: 1.2;
-  }
-  
-  .description-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .description {
-    font-style: italic;
-    color: #666;
-    margin-top: 10%;
-    margin-left: 10%;
-  }
-  </style>
