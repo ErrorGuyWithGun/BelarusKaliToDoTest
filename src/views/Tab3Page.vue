@@ -1,23 +1,17 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Your To Do List</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 3</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <InputToDo />
-    </ion-content>
-  </ion-page>
+  <div class=" min-h-screen">
+    <header class=" py-4">
+      <h1 class="text-2xl font-bold text-center">Your To Do List</h1>
+    </header>
+    <main class="container mx-auto py-8">
+      <input-to-do />
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+
 import InputToDo from '@/components/InputToDo.vue';
 
 </script>
+ 

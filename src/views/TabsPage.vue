@@ -1,31 +1,26 @@
 <template>
-
-  <ion-page >
-    <ion-tabs>
-      <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1" href="/tabs/tab1">
-          <ion-icon aria-hidden="true" :icon="homeSharp" />
-          <ion-label>Sign in</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="tab2" href="/tabs/tab2">
-          <ion-icon aria-hidden="true" :icon="search" />
-          <ion-label>Search</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="tab3" href="/tabs/tab3">
-          <ion-icon aria-hidden="true" :icon="bookmark" />
-          <ion-label>To Do List</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-page>
-
+  <div class="flex h-screen">
+    <div class="flex-1">
+      <router-view></router-view>
+    </div>
+    <nav class="w-full border-t py-4 fixed bottom-0" style="height: 10%;">
+      <div class="flex justify-center h-full">
+        <a href="/tabs/tab1" class="flex flex-col items-center justify-center flex-1 ">
+          <span>Sign in</span>
+          <svg>
+          </svg>
+        </a>
+        <a href="/tabs/tab2" class="flex flex-col items-center justify-center flex-1">
+          <span>Search</span>
+          <svg>
+          </svg>
+        </a>
+        <a href="/tabs/tab3" class="flex flex-col items-center justify-center flex-1">
+          <span>To Do List</span>
+          <svg>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </div>
 </template>
-
-<script setup lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { bookmark, homeSharp, search} from 'ionicons/icons';
-</script>
-

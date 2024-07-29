@@ -1,40 +1,46 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title class="text-base">Sign In</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true" class="ion-text-center">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title>Login</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <div class="ion-padding">
-        <ion-item>
-          <ion-input v-model="login" type="text" placeholder="Enter your login" @input="clearMessages"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input v-model="password" type="password" placeholder="Enter your password" @input="clearMessages" ></ion-input>
-        </ion-item>
-        <ion-button @click="authenticate" >Sign In</ion-button>
-        <p v-if="error" class="text-red-500 font-bold">{{ error }}</p>
-        <p v-if="isAuthenticated" class="text-green-500 font-bold">Добро пожаловать {{ login }} </p>
+  <div class="container mx-auto py-8">
+    <header class="text-center mb-6">
+      <h1 class="text-2xl font-bold">Sign In</h1>
+    </header>
+    <div class="max-w-md mx-auto">
+      <div class="mb-4">
+        <input
+          v-model="login"
+          type="text"
+          class="border rounded-md px-4 py-2 w-full"
+          placeholder="Enter your login"
+          @input="clearMessages"
+        >
       </div>
-    </ion-content>
-  </ion-page>
+      <div class="mb-4">
+        <input
+          v-model="password"
+          type="password"
+          class="border rounded-md px-4 py-2 w-full"
+          placeholder="Enter your password"
+          @input="clearMessages"
+        >
+      </div>
+      <button
+        @click="authenticate"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+        Sign In
+      </button>
+      <p v-if="error" class="text-red-500 font-bold mt-4">{{ error }}</p>
+      <p v-if="isAuthenticated" class="text-green-500 font-bold mt-4">Добро пожаловать {{ login }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton } from '@ionic/vue';
 import { ref } from 'vue';
 
 const login = ref('');
 const password = ref('');
 const error = ref('');
 const isAuthenticated = ref(false);
-const userId = ref(''); // Новая переменная для хранения id пользователя
+const userId = ref(''); 
 
 
 async function authenticate() {
@@ -44,7 +50,7 @@ async function authenticate() {
 
     if (login.value === data.login && password.value === data.password) {
       isAuthenticated.value = true;
-      userId.value = data.id; // Присваиваем id пользователя
+      userId.value = data.id; 
       console.log('Успешно аутентифицирован');
     } else {
       error.value = 'Неверный логин или пароль';

@@ -1,32 +1,34 @@
 <template>
-  <ion-page>
-    <ion-content class="ion-padding">
-      <ion-searchbar
+  <div class="flex justify-center items-center py-8">
+    <div class="max-w-md w-full flex items-center">
+      <input
         v-model="searchTerm"
+        type="text"
+        class="border rounded-md px-4 py-2 w-full"
         placeholder="Search"
         @keyup.enter="searchPosts"
-      ></ion-searchbar>
-      <ion-button @click="searchPosts">Search</ion-button>
-      <div v-if="searchResults.length > 0">
-        <ion-card v-for="post in searchResults" :key="post.id">
-          <ion-card-header>
-            <ion-card-title>{{ post.title }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>{{ post.body }}</p>
-          </ion-card-content>
-        </ion-card>
-      </div>
-
-    </ion-content>
-  </ion-page>
+      />
+      <button
+        @click="searchPosts"
+        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md "
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <div v-if="searchResults.length > 0" class="max-w-md mx-auto">
+    <div
+      v-for="post in searchResults"
+      :key="post.id"
+    >
+      <h2 class="text-lg font-bold mb-2">{{ post.title }}</h2>
+      <p class="text-gray-700">{{ post.body }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { IonPage, IonContent, IonSearchbar, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
-
-
 
 
 interface Post {
