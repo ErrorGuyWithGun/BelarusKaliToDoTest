@@ -1,8 +1,6 @@
 <template>
   <div class="container mx-auto py-8">
-    <header class="text-center mb-6">
-      <h1 class="text-2xl font-bold">Sign In</h1>
-    </header>
+    <AppHeador headerName="Sign In"/>
     <div class="max-w-md mx-auto">
       <div class="mb-4">
         <FormInput
@@ -33,6 +31,7 @@
 import { ref } from 'vue';
 import FormInput from '@/components/FormInput.vue';
 import FormButton from '@/components/FormButton.vue';
+import AppHeador from '@/components/AppHeador.vue';
 
 
 const login = ref('');

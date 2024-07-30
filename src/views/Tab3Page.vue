@@ -1,9 +1,9 @@
 <template>
-  <div class=" min-h-screen">
-    <header class=" py-4">
-      <h1 class="text-2xl font-bold text-center">Your To Do List</h1>
-    </header>
-    <main class="container mx-auto py-8">
+  <div class="container mx-auto py-8">
+    <AppHeador
+      headerName="Your To Do"
+    />
+    <main class="container mx-auto ">
       <div id="container">
     <div class="todo-list" v-if="todos.length > 0">
       <div v-for="(todo, index) in todos" :key="index" class="mt-4 flex justify-between items-center">
@@ -14,7 +14,6 @@
             placeholder="Name To Do"
             @keyup.enter="updateTodo(index)" 
             class="flex-1"
-            
           />
           <FormInput
             v-model="editingTodo.description" 
@@ -38,12 +37,10 @@
           </div>
         </div>
         <div v-else class="flex items-center w-full justify-between">
-
           <FormPost
             :name="todo.name"
             :description="todo.description"
           />
-
           <div class="button-container flex">
             <FormButton
               type="submit"
@@ -91,6 +88,7 @@ import FormInput from '@/components/FormInput.vue';
 import FormButton from '@/components/FormButton.vue';
 import FormButtonRed from '@/components/FormButtonRed.vue';
 import FormPost from '@/components/FormPost.vue';
+import AppHeador from '@/components/AppHeador.vue';
 
 
 const todos = ref<{ id: number; name: string; description: string }[]>([]);

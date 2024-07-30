@@ -1,5 +1,7 @@
 <template>
-  <div class="flex justify-center items-center py-8 ">
+  <div class="container mx-auto py-8">
+  <AppHeador headerName="Search"/>
+  <div class="flex justify-center items-center ">
     <div class="max-w-md w-full flex items-center ">
       <FormInput
         v-model="searchTerm"
@@ -21,12 +23,14 @@
       />
     </div>
   </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import FormInput from '@/components/FormInput.vue';
 import FormPost from '@/components/FormPost.vue';
+import AppHeador from '@/components/AppHeador.vue';
 
 interface Post {
   id: number;
