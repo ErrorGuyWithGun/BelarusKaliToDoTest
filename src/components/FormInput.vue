@@ -6,7 +6,7 @@
         @input="handleInput"
         class="border rounded-md px-4 py-2 w-full"
         :placeholder="placeholder"
-      >
+      />
     </div>
   </template>
   

@@ -15,8 +15,10 @@
       v-for="post in searchResults"
       :key="post.id"
     >
-      <h2 class="text-lg font-bold mb-2">{{ post.title }}</h2>
-      <p class="text-gray-700">{{ post.body }}</p>
+      <FormPost
+        :name="post.title"
+        :description="post.body"
+      />
     </div>
   </div>
 </template>
@@ -24,7 +26,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import FormInput from '@/components/FormInput.vue';
-
+import FormPost from '@/components/FormPost.vue';
 
 interface Post {
   id: number;
