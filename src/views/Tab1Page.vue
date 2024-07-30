@@ -6,11 +6,11 @@
     <div class="max-w-md mx-auto">
       <div class="mb-4">
         <FormInput
-        v-model="login"
-        type="text"
-        placeholder="Enter your login"
-        @clearMessages="clearMessages"
-        />
+          v-model="login"
+          type="text"
+          placeholder="Enter your login"
+          @clearMessages="clearMessages"
+          />
         <FormInput
           v-model="password"
           type="password"
@@ -18,13 +18,13 @@
           @clearMessages="clearMessages"
         />
       </div>
-      <button
-        @click="authenticate"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
-        Sign In
-      </button>
-      <p v-if="error" class="text-red-500 font-bold mt-4">{{ error }}</p>
-      <p v-if="isAuthenticated" class="text-green-500 font-bold mt-4">Добро пожаловать {{ login }}</p>
+        <FormButton
+            type="submit"
+            textbutton="Sign In"
+            @click="authenticate"
+        />
+      <p v-if="error" class="text-red-500 font-bold text-center">{{ error }}</p>
+      <p v-if="isAuthenticated" class="text-green-500 font-bold  text-center">Добро пожаловать {{ login }}</p>
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import FormInput from '@/components/FormInput.vue';
+import FormButton from '@/components/FormButton.vue';
 
 
 const login = ref('');

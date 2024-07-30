@@ -3,7 +3,7 @@
     <div class="flex-1">
       <router-view/>
     </div>
-    <nav class="w-full border-t py-4 fixed bottom-0" style="height: 10%;">
+    <nav class="w-full border-t py-4 fixed bottom-0 " style="height: 10%;">
       <div class="flex justify-center h-full">
         <a href="/tabs/tab1" class="flex flex-col items-center justify-center flex-1 ">
           <span>Sign in</span>

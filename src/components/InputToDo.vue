@@ -9,17 +9,25 @@
             placeholder="Name To Do"
             @keyup.enter="updateTodo(index)" 
             class="flex-1 px-4"
-           />
-           <FormInput
+          />
+          <FormInput
             v-model="editingTodo.description" 
             type="text"
             placeholder="Description"
             @keyup.enter="updateTodo(index)" 
             class="flex-1 px-4"
-           />
+          />
           <div class="button-container flex">
-            <button @click="updateTodo(index)" class="ml-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ">Save</button>
-            <button @click="cancelEdit" class="ml-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Cancel</button>
+            <FormButton
+              type="submit"
+              textbutton="Save"
+              @click="updateTodo(index)"
+            />
+            <FormButtonRed
+              type="submit"
+              textbutton="Cancel"
+              @click="cancelEdit"
+            />
           </div>
         </div>
         <div v-else class="flex items-center w-full justify-between">
@@ -28,8 +36,16 @@
             <div class="description text-gray-600 mt-2 ml-4">{{ todo.description }}</div>
           </div>
           <div class="button-container flex">
-            <button @click="startEdit(index)" class="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Edit</button>
-            <button @click="removeTodo(index)" class="ml-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Delete</button>
+            <FormButton
+              type="submit"
+              textbutton="Edit"
+              @click="startEdit(index)"
+            />
+            <FormButtonRed
+              type="submit"
+              textbutton="Delete"
+              @click="removeTodo(index)"
+            />
           </div>
         </div>
       </div>
@@ -49,7 +65,11 @@
         @keyup.enter="addTodo"
         class="flex-1 px-3"
       />
-      <button @click="addTodo" class="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save</button>
+      <FormButton
+        type="submit"
+        textbutton="Save"
+        @click="addTodo"
+      />
     </div>
   </div>
 </template>
@@ -57,6 +77,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import FormInput from '@/components/FormInput.vue';
+import FormButton from '@/components/FormButton.vue';
+import FormButtonRed from '@/components/FormButtonRed.vue'
 
 const todos = ref<{ id: number; name: string; description: string }[]>([]);
 const editingIndex = ref(-1);
