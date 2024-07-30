@@ -1,19 +1,13 @@
 <template>
-  <div class="flex justify-center items-center py-8">
-    <div class="max-w-md w-full flex items-center">
-      <input
+  <div class="flex justify-center items-center py-8 ">
+    <div class="max-w-md w-full flex items-center ">
+      <FormInput
         v-model="searchTerm"
         type="text"
-        class="border rounded-md px-4 py-2 w-full"
         placeholder="Search"
-        @keyup.enter="searchPosts"
+        @searchPosts="searchPosts"
+        class="flex-1"
       />
-      <button
-        @click="searchPosts"
-        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md "
-      >
-        Search
-      </button>
     </div>
   </div>
   <div v-if="searchResults.length > 0" class="max-w-md mx-auto">
@@ -29,6 +23,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import FormInput from '@/components/FormInput.vue';
 
 
 interface Post {

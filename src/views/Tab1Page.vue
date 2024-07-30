@@ -5,22 +5,18 @@
     </header>
     <div class="max-w-md mx-auto">
       <div class="mb-4">
-        <input
-          v-model="login"
-          type="text"
-          class="border rounded-md px-4 py-2 w-full"
-          placeholder="Enter your login"
-          @input="clearMessages"
-        >
-      </div>
-      <div class="mb-4">
-        <input
+        <FormInput
+        v-model="login"
+        type="text"
+        placeholder="Enter your login"
+        @clearMessages="clearMessages"
+        />
+        <FormInput
           v-model="password"
           type="password"
-          class="border rounded-md px-4 py-2 w-full"
           placeholder="Enter your password"
-          @input="clearMessages"
-        >
+          @clearMessages="clearMessages"
+        />
       </div>
       <button
         @click="authenticate"
@@ -35,6 +31,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import FormInput from '@/components/FormInput.vue';
+
 
 const login = ref('');
 const password = ref('');
