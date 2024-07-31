@@ -32,9 +32,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import FormInput from '@/components/form-input.vue';
-import FormButton from '@/components/form-button.vue';
-import AppHeador from '@/components/app-heador.vue';
+import FormInput from '@/components/BaseInput.vue';
+import FormButton from '@/components/BaseButton.vue';
+import AppHeador from '@/components/TheHeading.vue';
 
 
 const login = ref('');

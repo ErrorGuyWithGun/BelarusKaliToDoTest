@@ -86,10 +86,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import FormInput from '@/components/form-input.vue';
-import FormButton from '@/components/form-button.vue';
-import FormPost from '@/components/form-post.vue';
-import AppHeador from '@/components/app-heador.vue';
+import FormInput from '@/components/BaseInput.vue';
+import FormButton from '@/components/BaseButton.vue';
+import FormPost from '@/components/BasePost.vue';
+import AppHeador from '@/components/TheHeading.vue';
 
 
 const todos = ref<{ id: number; name: string; description: string }[]>([]);
