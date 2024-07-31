@@ -1,6 +1,8 @@
 <template>
   <div class="container mx-auto py-8">
-    <AppHeador headerName="Sign In"/>
+    <AppHeador 
+      headerName="Sign In"
+    />
     <div class="max-w-md mx-auto">
       <div class="mb-4">
         <FormInput
@@ -20,6 +22,7 @@
             type="submit"
             textbutton="Sign In"
             @click="authenticate"
+            styleVariant="blue"
         />
       <p v-if="error" class="text-red-500 font-bold text-center">{{ error }}</p>
       <p v-if="isAuthenticated" class="text-green-500 font-bold  text-center">Добро пожаловать {{ login }}</p>
@@ -29,9 +32,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import FormInput from '@/components/FormInput.vue';
-import FormButton from '@/components/FormButton.vue';
-import AppHeador from '@/components/AppHeador.vue';
+import FormInput from '@/components/form-input.vue';
+import FormButton from '@/components/form-button.vue';
+import AppHeador from '@/components/app-heador.vue';
 
 
 const login = ref('');

@@ -1,10 +1,10 @@
 <template>
-    <div class="mb-4">
+    <div>
       <input
         :type="type"
         :value="modelValue"
         @input="handleInput"
-        class="border rounded-md px-4 py-2 w-full"
+        :class="style"
         :placeholder="placeholder"
       />
     </div>
@@ -13,11 +13,21 @@
   <script setup lang="ts">
   import { defineProps, defineEmits } from 'vue';
   
-defineProps<{
-  type: string;
-  modelValue: string;
-  placeholder: string;
-}>();
+defineProps({
+  type: {
+    type:String,
+  },
+  modelValue: {
+    type:String,
+  },
+  placeholder: {
+    type:String,
+  },
+  style:{
+    type: String,
+    default:'mb-4 border rounded-md px-4 py-2 w-full',
+  },
+});
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void;

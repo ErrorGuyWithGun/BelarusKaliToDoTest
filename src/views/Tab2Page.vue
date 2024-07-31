@@ -28,21 +28,15 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import FormInput from '@/components/FormInput.vue';
-import FormPost from '@/components/FormPost.vue';
-import AppHeador from '@/components/AppHeador.vue';
+import FormInput from '@/components/form-input.vue';
+import FormPost from '@/components/form-post.vue';
+import AppHeador from '@/components/app-heador.vue';
 
 interface Post {
   id: number;
   title: string;
   body: string;
   comments: Comment[];
-}
-
-interface Comment {
-  id: number;
-  postId: number;
-  body: string;
 }
 
 const posts = ref<Post[]>([]);
@@ -56,10 +50,9 @@ onMounted(async () => {
 async function fetchPostsAndComments() {
   const postResponse = await fetch("http://localhost:3000/posts");
   posts.value = await postResponse.json();
-
-
+  
   for (const post of posts.value) {
-    const commentResponse = await fetch(`http://localhost:3000/posts`);
+    const commentResponse = await fetch("http://localhost:3000");
     post.comments = await commentResponse.json();
   }
 }

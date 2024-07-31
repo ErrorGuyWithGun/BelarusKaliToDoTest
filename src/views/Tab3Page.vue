@@ -29,10 +29,11 @@
               textbutton="Save"
               @click="updateTodo(index)"
             />
-            <FormButtonRed
+            <FormButton
               type="submit"
               textbutton="Cancel"
               @click="cancelEdit"
+               styleVariant="red"
             />
           </div>
         </div>
@@ -47,10 +48,11 @@
               textbutton="Edit"
               @click="startEdit(index)"
             />
-            <FormButtonRed
+            <FormButton
               type="submit"
               textbutton="Delete"
               @click="removeTodo(index)"
+               styleVariant="red"
             />
           </div>
         </div>
@@ -84,11 +86,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import FormInput from '@/components/FormInput.vue';
-import FormButton from '@/components/FormButton.vue';
-import FormButtonRed from '@/components/FormButtonRed.vue';
-import FormPost from '@/components/FormPost.vue';
-import AppHeador from '@/components/AppHeador.vue';
+import FormInput from '@/components/form-input.vue';
+import FormButton from '@/components/form-button.vue';
+import FormPost from '@/components/form-post.vue';
+import AppHeador from '@/components/app-heador.vue';
 
 
 const todos = ref<{ id: number; name: string; description: string }[]>([]);
